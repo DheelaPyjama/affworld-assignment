@@ -3,6 +3,7 @@ import { useDrag } from 'react-dnd'
 import { TrashIcon } from '@radix-ui/react-icons'
 import { BoardContext } from '../contexts/BoardContext'
 import clsx from 'clsx'
+import Pill from './Pill'
 
 const Task = ({ task, columnId }) => {
   const { deleteTask } = useContext(BoardContext)
@@ -32,7 +33,7 @@ const Task = ({ task, columnId }) => {
     >
       <div className='flex flex-col items-center'>
         <span>{task.name}</span>
-        <span>{task.status}</span>
+        <Pill status={task.status} />
       </div>
       <TrashIcon color='red' onClick={() => handleClick(task)} className='cursor-pointer' />
     </div>
