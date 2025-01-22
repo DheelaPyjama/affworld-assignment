@@ -1,13 +1,18 @@
-import React from 'react';
+import React from "react";
 
 const Register = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-sm  p-8 bg-white rounded-lg shadow-lg mb-6">
-        <h2 className="text-2xl font-bold text-center text-gray-700">Register</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-700">
+          Register
+        </h2>
         <form className="mt-6">
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-600"
+            >
               Name
             </label>
             <input
@@ -19,7 +24,10 @@ const Register = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-600"
+            >
               Email
             </label>
             <input
@@ -31,7 +39,10 @@ const Register = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-600"
+            >
               Password
             </label>
             <input
@@ -50,15 +61,15 @@ const Register = () => {
           </button>
         </form>
         <div className="flex items-center justify-between mt-4">
-          <span className="text-sm text-gray-600">Already have an account?</span>
+          <span className="text-sm text-gray-600">
+            Already have an account?
+          </span>
           <a href="/login" className="text-sm text-blue-500 hover:underline">
             Login
           </a>
         </div>
         <div className="mt-4 text-center">
-          <button
-            className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:outline-none"
-          >
+          <button className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:outline-none">
             Sign in with Google
           </button>
         </div>
