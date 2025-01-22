@@ -1,31 +1,33 @@
-import React from 'react';
-import { Draggable } from 'react-beautiful-dnd';
+import React from "react";
+import { useDrag } from "react-dnd";
 
-const TaskCard = ({ item, index }) => {
+
+const Task = ({ task, columnId }) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: "TASK",
+    item: { task, from: columnId },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
   return (
-    <Draggable key={item.id} draggableId={item.id} index={index}>
-      {(provided) => (
-        <div
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          className="flex flex-col justify-center items-start p-4 min-h-[106px] rounded-md max-w-[311px] bg-white mt-4 shadow-sm"
-        >
-          <p className="text-gray-800 font-medium">{item.Task}</p>
-          <div className="flex justify-between items-center w-full text-sm text-gray-500 mt-2">
-            <p>
-              <span>
-                {new Date(item.Due_Date).toLocaleDateString("en-us", {
-                  month: "short",
-                  day: "2-digit",
-                })}
-              </span>
-            </p>
-          </div>
-        </div>
-      )}
-    </Draggable>
+    <div
+      ref={drag}
+      className="flex flex-row items-center justify-center"
+      style={{
+        margin: "10px 0",
+        padding: "10px",
+        backgroundColor: isDragging ? "#ddd" : "#f9f9f9",
+        border: "1px solid #ccc",
+        borderRadius: "5px",
+        cursor: "grab",
+      }}
+    >
+      {task}
+      {}
+    </div>
   );
 };
 
-export default TaskCard;
+export default Task;
