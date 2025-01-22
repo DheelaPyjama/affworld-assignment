@@ -1,8 +1,9 @@
 import React from "react";
 import { useDrag } from "react-dnd";
+import { TrashIcon } from "@radix-ui/react-icons";
 
 
-const Task = ({ task, columnId }) => {
+const Task = ({ task, columnId, handleClick }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "TASK",
     item: { task, from: columnId },
@@ -14,7 +15,7 @@ const Task = ({ task, columnId }) => {
   return (
     <div
       ref={drag}
-      className="flex flex-row items-center justify-center"
+      className="flex flex-row items-center justify-between"
       style={{
         margin: "10px 0",
         padding: "10px",
@@ -25,7 +26,7 @@ const Task = ({ task, columnId }) => {
       }}
     >
       {task}
-      {}
+      <TrashIcon color="red" onClick={handleClick}/>
     </div>
   );
 };
