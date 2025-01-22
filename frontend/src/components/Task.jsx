@@ -31,7 +31,7 @@ const Task = ({ task, columnId }) => {
         }
       )}
     >
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col'>
         <span>{task.name}</span>
         <Pill status={task.status} />
       </div>
