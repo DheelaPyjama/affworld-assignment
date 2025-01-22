@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useDrag } from 'react-dnd'
 import { TrashIcon } from '@radix-ui/react-icons'
 import { BoardContext } from '../contexts/BoardContext'
+import clsx from 'clsx'
 
 const Task = ({ task, columnId }) => {
   const { deleteTask } = useContext(BoardContext)
@@ -21,18 +22,19 @@ const Task = ({ task, columnId }) => {
   return (
     <div
       ref={drag}
-      className='flex flex-row items-center justify-between'
-      style={{
-        margin: '10px 0',
-        padding: '10px',
-        backgroundColor: isDragging ? '#ddd' : '#f9f9f9',
-        border: '1px solid #ccc',
-        borderRadius: '5px',
-        cursor: 'grab'
-      }}
+      className={clsx(
+        'flex items-center justify-between p-2 my-2 bg-gray-50 border border-gray-300 rounded-md cursor-grab',
+        {
+          'bg-gray-300': isDragging,
+          'bg-gray-50': !isDragging
+        }
+      )}
     >
-      {task.name}
-      <TrashIcon color='red' onClick={() => handleClick(task)} />
+      <div className='flex flex-col items-center'>
+        <span>{task.name}</span>
+        <span>{task.status}</span>
+      </div>
+      <TrashIcon color='red' onClick={() => handleClick(task)} className='cursor-pointer' />
     </div>
   )
 }

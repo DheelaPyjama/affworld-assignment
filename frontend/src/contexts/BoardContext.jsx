@@ -28,7 +28,16 @@ const BoardProvider = ({ children }) => {
     })
   }
 
-  return <BoardContext.Provider value={{ tasks, moveTask, deleteTask }}>{children}</BoardContext.Provider>
+  const addTask = (task) => {
+    setTasks((prev) => {
+      return {
+        ...prev,
+        [task.status]: task
+      }
+    })
+  }
+
+  return <BoardContext.Provider value={{ tasks, moveTask, deleteTask, addTask }}>{children}</BoardContext.Provider>
 }
 
 export default BoardProvider
