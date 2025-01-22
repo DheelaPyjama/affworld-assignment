@@ -1,4 +1,3 @@
-// src/pages/Register.tsx
 import React from 'react';
 
 const Register = () => {

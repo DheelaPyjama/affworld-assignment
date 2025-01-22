@@ -1,13 +1,10 @@
 import React, { useState, useContext, createContext } from "react";
+import { BoardData } from "../constants/BoardData";
 
 const BoardContext = createContext()
 
 const BoardProvider = ({children}) => {
-    const [tasks, setTasks] = useState({
-        pending: ["Task 1", "Task 2", "Task 3"],
-        inProgress: ["Task 4", "Task 5"],
-        completed: ["Task 6"],
-      });
+    const [tasks, setTasks] = useState(BoardData);
 
     const moveTask = (task, from, to) => {
         setTasks((prev) => {
