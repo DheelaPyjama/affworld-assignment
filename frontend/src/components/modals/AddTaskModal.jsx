@@ -1,9 +1,24 @@
 import React, { useContext } from 'react'
 import { BoardContext } from '../../contexts/BoardContext'
 import { Dialog, DialogTitle } from '@headlessui/react'
+import { v4 as uuidv4 } from 'uuid'
 
 const AddTaskModal = () => {
-  const { closeModal, addTask } = useContext(BoardContext)
+  const { isModalOpen, closeModal, addTask } = useContext(BoardContext)
+  const [formState, setFormState] = useState({ taskName: '', status: 'pending' })
+
+  const handleAddTask = () => {
+    const task = {
+      id: uuidv4(),
+      taskName: formState.taskName,
+      status: formState.status
+    }
+
+    addTask(task)
+    setFormState({ taskName: '', status: 'pending' })
+    closeModal()
+  }
+
   return (
     <div className='relative'>
       <Dialog
@@ -22,6 +37,7 @@ const AddTaskModal = () => {
                 id='taskName'
                 type='text'
                 className='mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500'
+                onChange={(e) => setFormState((prev) => ({ ...prev, taskName: e.target.value }))}
               />
             </div>
             <div className='mb-4'>
@@ -31,6 +47,7 @@ const AddTaskModal = () => {
               <select
                 id='status'
                 className='mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500'
+                onChange={(e) => setFormState((prev) => ({ ...prev, status: e.target.value }))}
               >
                 <option value='pending'>Pending</option>
                 <option value='inProgress'>In Progress</option>
@@ -41,7 +58,7 @@ const AddTaskModal = () => {
               <button type='button' onClick={closeModal} className='mr-2 px-4 py-2 bg-red-800 text-white rounded-md'>
                 Cancel
               </button>
-              <button type='button' onClick={addTask(task)}>
+              <button type='button' onClick={handleAddTask}>
                 Create
               </button>
             </div>
