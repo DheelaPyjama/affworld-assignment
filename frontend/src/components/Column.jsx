@@ -28,6 +28,7 @@ const Column = ({ title, tasks, moveTask, columnId }) => {
       }}
     >
       <h3 style={{ textAlign: 'center' }}>{title}</h3>
+
       {tasks.map((task) => (
         <Task key={task.id} task={task} columnId={columnId} moveTask={moveTask} />
       ))}

@@ -10,7 +10,7 @@ const AddTaskModal = () => {
   const handleAddTask = () => {
     const task = {
       id: uuidv4(),
-      taskName: formState.taskName,
+      name: formState.taskName,
       status: formState.status
     }
 

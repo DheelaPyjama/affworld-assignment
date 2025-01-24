@@ -2,15 +2,12 @@ import React, { useContext } from 'react'
 import { useDrag } from 'react-dnd'
 import { TrashIcon } from '@radix-ui/react-icons'
 import { BoardContext } from '../contexts/BoardContext'
+import DeleteTaskModal from './modals/DeleteTaskModal'
 import clsx from 'clsx'
 import Pill from './Pill'
 
 const Task = ({ task, columnId }) => {
-  const { deleteTask } = useContext(BoardContext)
-
-  const handleClick = (task) => {
-    deleteTask(task)
-  }
+  const { isDeleteModal, setIsDeleteModal } = useContext(BoardContext)
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'TASK',
@@ -35,7 +32,8 @@ const Task = ({ task, columnId }) => {
         <span>{task.name}</span>
         <Pill status={task.status} />
       </div>
-      <TrashIcon color='red' onClick={() => handleClick(task)} className='cursor-pointer' />
+      <TrashIcon color='red' onClick={() => setIsDeleteModal(true)} className='cursor-pointer' />
+      {isDeleteModal && <DeleteTaskModal task={task} />}
     </div>
   )
 }
