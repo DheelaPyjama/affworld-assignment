@@ -6,12 +6,15 @@ import { BoardContext } from '../contexts/BoardContext'
 import { PlusIcon } from '@radix-ui/react-icons'
 
 const Board = ({}) => {
-  const { tasks, moveTask } = useContext(BoardContext)
+  const { tasks, moveTask, openModal } = useContext(BoardContext)
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div className='flex flex-col p-5 md:p-10 relative m-5 bg-gray-50 rounded-lg shadow-md'>
-        <button className='flex items-center absolute top-2 right-2 px-4 py-2 bg-green-600 text-white rounded-md cursor-pointer'>
+        <button
+          onClick={openModal}
+          className='flex items-center absolute top-2 right-2 px-4 py-2 bg-green-600 text-white rounded-md cursor-pointer'
+        >
           <PlusIcon className='mr-2' /> {/* Add margin to the right of the icon */}
           <span>Add Task</span>
         </button>

@@ -5,6 +5,9 @@ export const BoardContext = createContext()
 
 const BoardProvider = ({ children }) => {
   const [tasks, setTasks] = useState(BoardData)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
 
   const moveTask = (task, from, to) => {
     setTasks((prev) => {
@@ -37,7 +40,11 @@ const BoardProvider = ({ children }) => {
     })
   }
 
-  return <BoardContext.Provider value={{ tasks, moveTask, deleteTask, addTask }}>{children}</BoardContext.Provider>
+  return (
+    <BoardContext.Provider value={{ tasks, isModalOpen, openModal, closeModal, moveTask, deleteTask, addTask }}>
+      {children}
+    </BoardContext.Provider>
+  )
 }
 
 export default BoardProvider
