@@ -18,8 +18,6 @@ const Pill = ({ status }) => {
     completed: '✅'
   }
 
-  console.log(status.charAt(0).toUpperCase())
-
   return (
     <div
       className={clsx(
