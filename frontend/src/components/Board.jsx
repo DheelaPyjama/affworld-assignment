@@ -4,9 +4,10 @@ import React, { useContext } from 'react'
 import Column from './Column'
 import { BoardContext } from '../contexts/BoardContext'
 import { PlusIcon } from '@radix-ui/react-icons'
+import AddTaskModal from './modals/AddTaskModal'
 
 const Board = ({}) => {
-  const { tasks, moveTask, openModal } = useContext(BoardContext)
+  const { tasks, moveTask, openModal, isModalOpen } = useContext(BoardContext)
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -29,6 +30,7 @@ const Board = ({}) => {
           <Column title='Pending' tasks={tasks.pending} moveTask={moveTask} columnId='pending' />
           <Column title='In Progress' tasks={tasks.inProgress} moveTask={moveTask} columnId='inProgress' />
           <Column title='Completed' tasks={tasks.completed} moveTask={moveTask} columnId='completed' />
+          {isModalOpen && <AddTaskModal />}
         </div>
       </div>
     </DndProvider>

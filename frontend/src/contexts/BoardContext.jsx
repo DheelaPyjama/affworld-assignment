@@ -42,7 +42,9 @@ const BoardProvider = ({ children }) => {
   }
 
   return (
-    <BoardContext.Provider value={{ tasks, isModalOpen, openModal, closeModal, moveTask, deleteTask, addTask }}>
+    <BoardContext.Provider
+      value={{ tasks, isModalOpen, setIsModalOpen, openModal, closeModal, moveTask, deleteTask, addTask }}
+    >
       {children}
     </BoardContext.Provider>
   )

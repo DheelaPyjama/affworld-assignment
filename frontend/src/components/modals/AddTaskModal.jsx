@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { BoardContext } from '../../contexts/BoardContext'
 import { Dialog, DialogTitle } from '@headlessui/react'
 import { v4 as uuidv4 } from 'uuid'
@@ -55,10 +55,14 @@ const AddTaskModal = () => {
               </select>
             </div>
             <div className='flex justify-end'>
-              <button type='button' onClick={closeModal} className='mr-2 px-4 py-2 bg-red-800 text-white rounded-md'>
+              <button type='button' className='mr-2 px-4 py-2 bg-red-800 text-white rounded-md' onClick={closeModal}>
                 Cancel
               </button>
-              <button type='button' onClick={handleAddTask}>
+              <button
+                type='button'
+                className='mr-2 px-4 py-2 bg-green-700 text-white rounded-md'
+                onClick={handleAddTask}
+              >
                 Create
               </button>
             </div>
