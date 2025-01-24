@@ -11,8 +11,9 @@ const BoardProvider = ({ children }) => {
 
   const moveTask = (task, from, to) => {
     setTasks((prev) => {
-      const fromColumn = prev[from].filter((t) => t !== task)
-      const toColumn = [...prev[to], task]
+      const updatedTask = { ...task, status: to }
+      const fromColumn = prev[from].filter((t) => t.id !== task.id)
+      const toColumn = [...prev[to], updatedTask]
       return {
         ...prev,
         [from]: fromColumn,

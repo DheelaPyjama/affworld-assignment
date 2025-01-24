@@ -1,6 +1,10 @@
 import React from 'react'
 import clsx from 'clsx'
 
+const formatStatus = (status) => {
+  return status.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (char) => char.toUpperCase())
+}
+
 const Pill = ({ status }) => {
   const statusColors = {
     pending: 'bg-yellow-200 text-yellow-800',
@@ -14,6 +18,8 @@ const Pill = ({ status }) => {
     completed: '✅'
   }
 
+  console.log(status.charAt(0).toUpperCase())
+
   return (
     <div
       className={clsx(
@@ -22,7 +28,7 @@ const Pill = ({ status }) => {
       )}
     >
       <span>{icons[status]}</span>
-      <span>{status}</span>
+      <span>{formatStatus(status)}</span>
     </div>
   )
 }
