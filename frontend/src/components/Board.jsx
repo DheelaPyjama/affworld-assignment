@@ -7,13 +7,13 @@ import { PlusIcon } from '@radix-ui/react-icons'
 import AddTaskModal from './modals/AddTaskModal'
 
 const Board = ({}) => {
-  const { tasks, moveTask, openModal, isModalOpen } = useContext(BoardContext)
+  const { tasks, moveTask, setIsAddModal, isAddModal } = useContext(BoardContext)
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div className='flex flex-col p-5 md:p-10 relative m-5 bg-gray-50 rounded-lg shadow-md'>
         <button
-          onClick={openModal}
+          onClick={() => setIsAddModal(true)}
           className='flex items-center absolute top-2 right-2 px-4 py-2 bg-green-600 text-white rounded-md cursor-pointer'
         >
           <PlusIcon className='mr-2' /> {/* Add margin to the right of the icon */}
@@ -30,7 +30,7 @@ const Board = ({}) => {
           <Column title='Pending' tasks={tasks.pending} moveTask={moveTask} columnId='pending' />
           <Column title='In Progress' tasks={tasks.inProgress} moveTask={moveTask} columnId='inProgress' />
           <Column title='Completed' tasks={tasks.completed} moveTask={moveTask} columnId='completed' />
-          {isModalOpen && <AddTaskModal />}
+          {isAddModal && <AddTaskModal />}
         </div>
       </div>
     </DndProvider>

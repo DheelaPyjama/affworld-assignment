@@ -1,19 +1,19 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { BoardContext } from '../../contexts/BoardContext'
 import { Dialog, DialogTitle } from '@headlessui/react'
 
-const DeleteTaskModal = ({ task }) => {
+const DeleteTaskModal = () => {
   const { isDeleteModal, closeDeleteModal, deleteTask } = useContext(BoardContext)
 
   const handleDeleteTask = () => {
-    deleteTask(task)
+    deleteTask(isDeleteModal.task)
     closeDeleteModal()
   }
 
   return (
     <div className='relative'>
       <Dialog
-        open={isDeleteModal}
+        open={isDeleteModal.state}
         onClose={closeDeleteModal}
         className='fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50'
       >
@@ -22,7 +22,7 @@ const DeleteTaskModal = ({ task }) => {
           <form>
             <div className='mb-4'>
               <p className='block text-sm font-medium text-gray-700'>
-                Are you sure you want to delete this task: {task?.name}
+                Are you sure you want to delete this task: {isDeleteModal.task?.name}
               </p>
             </div>
             <div className='flex justify-end'>

@@ -32,8 +32,8 @@ const Task = ({ task, columnId }) => {
         <span>{task.name}</span>
         <Pill status={task.status} />
       </div>
-      <TrashIcon color='red' onClick={() => setIsDeleteModal(true)} className='cursor-pointer' />
-      {isDeleteModal && <DeleteTaskModal task={task} />}
+      <TrashIcon color='red' onClick={() => setIsDeleteModal({ state: true, task: task })} className='cursor-pointer' />
+      {isDeleteModal.state && <DeleteTaskModal />}
     </div>
   )
 }

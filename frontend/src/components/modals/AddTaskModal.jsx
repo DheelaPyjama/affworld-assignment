@@ -4,7 +4,7 @@ import { Dialog, DialogTitle } from '@headlessui/react'
 import { v4 as uuidv4 } from 'uuid'
 
 const AddTaskModal = () => {
-  const { isModalOpen, closeModal, addTask } = useContext(BoardContext)
+  const { isAddModal, closeAddModal, addTask } = useContext(BoardContext)
   const [formState, setFormState] = useState({ taskName: '', status: 'pending' })
 
   const handleAddTask = () => {
@@ -16,14 +16,14 @@ const AddTaskModal = () => {
 
     addTask(task)
     setFormState({ taskName: '', status: 'pending' })
-    closeModal()
+    closeAddModal()
   }
 
   return (
     <div className='relative'>
       <Dialog
-        open={isModalOpen}
-        onClose={closeModal}
+        open={isAddModal}
+        onClose={closeAddModal}
         className='fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50'
       >
         <div className='bg-white rounded-lg p-6 max-w-sm w-full shadow-lg'>
@@ -55,7 +55,7 @@ const AddTaskModal = () => {
               </select>
             </div>
             <div className='flex justify-end'>
-              <button type='button' className='mr-2 px-4 py-2 bg-red-800 text-white rounded-md' onClick={closeModal}>
+              <button type='button' className='mr-2 px-4 py-2 bg-red-800 text-white rounded-md' onClick={closeAddModal}>
                 Cancel
               </button>
               <button
