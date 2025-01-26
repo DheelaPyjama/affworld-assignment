@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 
 const Register = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { register } = useAuth()
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Simulate registration logic
-    navigate('/login') // Redirect to the board after registration
+    try {
+      await register(name, email, password)
+    } catch (err) {
+      console.error('Registration failed')
+    }
   }
   return (
     <div className='flex items-center justify-center min-h-screen bg-gray-100'>

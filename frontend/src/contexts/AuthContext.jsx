@@ -9,6 +9,20 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null)
   const navigate = useNavigate()
 
+  const register = async (name, email, password) => {
+    try {
+      await axios.post('http://localhost:5000/api/auth/register', {
+        name,
+        email,
+        password
+      })
+      navigate('/login')
+    } catch (err) {
+      console.error('Registration failed: ', err.response?.data?.message, err.message)
+      throw err
+    }
+  }
+
   const login = async (email, password) => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', {
@@ -33,7 +47,7 @@ const AuthProvider = ({ children }) => {
     navigate('/login')
   }
 
-  return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ user, login, logout, register }}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => {

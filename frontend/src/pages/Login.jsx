@@ -9,11 +9,13 @@ const Login = () => {
   const { login } = useAuth()
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    //add login logic
-    const userData = { email }
-    login(userData)
+    try {
+      await login(email, password)
+    } catch (err) {
+      console.error('Login failed, please verify credentials')
+    }
     navigate('/landing')
   }
 
@@ -31,6 +33,7 @@ const Login = () => {
               id='email'
               className='w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400'
               placeholder='Enter your email'
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -43,6 +46,7 @@ const Login = () => {
               id='password'
               className='w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400'
               placeholder='Enter your password'
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
