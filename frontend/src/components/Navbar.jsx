@@ -11,21 +11,24 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='bg-white p-4 text-black'>
-      <div className='container mx-auto flex justify-between items-center'>
+    <div className='w-full flex justify-center items-center'>
+      <nav className='bg-white p-4 text-black' shadow-md>
         <div className='flex space-x-4'>
-          <Link to='/board' className='hover:text-blue-200'>
+          <Link to='/landing' className='hover:text-green-500'>
+            Home
+          </Link>
+          <Link to='/board' className='hover:text-green-500'>
             Task Management
           </Link>
-          <Link to='/feed' className='hover:text-blue-200'>
+          <Link to='/feed' className='hover:text-green-500'>
             Feed
           </Link>
-          <button onClick={handleLogout} className='bg-red-500 px-4 py-2 rounded-md hover:bg-red-600'>
+          <button onClick={handleLogout} className='bg-red-500 px-2 py-2 text-sm rounded-md hover:bg-red-600'>
             Logout
           </button>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   )
 }
 

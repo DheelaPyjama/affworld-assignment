@@ -13,6 +13,7 @@ const Login = () => {
     e.preventDefault()
     try {
       await login(email, password)
+      navigate('/landing')
     } catch (err) {
       console.error('Login failed, please verify credentials')
     }

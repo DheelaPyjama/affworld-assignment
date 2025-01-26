@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
 
 const Register = () => {
   const [name, setName] = useState('')
@@ -14,6 +13,7 @@ const Register = () => {
     e.preventDefault()
     try {
       await register(name, email, password)
+      navigate('/login')
     } catch (err) {
       console.error('Registration failed')
     }
@@ -32,6 +32,7 @@ const Register = () => {
               id='name'
               className='w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400'
               placeholder='Enter your name'
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
@@ -44,6 +45,7 @@ const Register = () => {
               id='email'
               className='w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400'
               placeholder='Enter your email'
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -56,6 +58,7 @@ const Register = () => {
               id='password'
               className='w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400'
               placeholder='Enter your password'
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>

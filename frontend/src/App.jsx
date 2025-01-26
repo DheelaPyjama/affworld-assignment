@@ -8,6 +8,8 @@ import Post from './components/Post'
 import Feed from './components/Feed'
 import Landing from './pages/Landing'
 import AuthProvider, { useAuth } from './contexts/AuthContext'
+import TaskPage from './pages/TaskPage'
+import Navbar from './components/Navbar'
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth()
@@ -35,7 +37,7 @@ function App() {
               path='/board'
               element={
                 <ProtectedRoute>
-                  <Board />
+                  <TaskPage />
                 </ProtectedRoute>
               }
             ></Route>
@@ -43,6 +45,7 @@ function App() {
               path='/feed'
               element={
                 <ProtectedRoute>
+                  <Navbar />
                   <div className='min-h-screen bg-gray-100 p-6'>
                     <div className='max-w-md mx-auto'>
                       <Post onSubmit={handleSubmit} />

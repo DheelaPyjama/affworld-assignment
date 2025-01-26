@@ -1,22 +1,19 @@
 import React, { useContext, createContext, useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
 export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
-  const navigate = useNavigate()
 
   const register = async (name, email, password) => {
     try {
       await axios.post('http://localhost:5000/api/auth/register', {
-        name,
+        username: name,
         email,
         password
       })
-      navigate('/login')
     } catch (err) {
       console.error('Registration failed: ', err.response?.data?.message, err.message)
       throw err
@@ -29,11 +26,10 @@ const AuthProvider = ({ children }) => {
         email,
         password
       })
-      const { user, token } = response.data
-      setUser(user)
+      const { token } = response.data
+      setUser(email)
       setToken(token)
       localStorage.setItem('token', token)
-      navigate('/landing')
     } catch (err) {
       console.error('Login failed:', err.response?.data?.message || err.message)
       throw err
