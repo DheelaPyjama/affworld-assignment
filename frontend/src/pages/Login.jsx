@@ -14,7 +14,7 @@ const Login = () => {
     //add login logic
     const userData = { email }
     login(userData)
-    navigate('/board')
+    navigate('/landing')
   }
 
   return (

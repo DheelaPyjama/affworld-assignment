@@ -6,6 +6,7 @@ import Board from './components/Board'
 import BoardProvider from './contexts/BoardContext'
 import Post from './components/Post'
 import Feed from './components/Feed'
+import Landing from './pages/Landing'
 import AuthProvider, { useAuth } from './contexts/AuthContext'
 
 const ProtectedRoute = ({ children }) => {
@@ -48,6 +49,14 @@ function App() {
                       <Feed posts={posts} />
                     </div>
                   </div>
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path='/landing'
+              element={
+                <ProtectedRoute>
+                  <Landing />
                 </ProtectedRoute>
               }
             ></Route>
