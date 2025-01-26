@@ -63,6 +63,8 @@ function App() {
                 </ProtectedRoute>
               }
             ></Route>
+
+            <Route path='/' element={<Navigate to='/login' replace />} />
           </Routes>
         </Router>
       </BoardProvider>
