@@ -12,3 +12,5 @@ const Feed = ({ posts }) => {
     </div>
   )
 }
+
+export default Feed
