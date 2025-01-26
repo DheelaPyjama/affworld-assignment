@@ -1,15 +1,36 @@
 import React, { useContext, createContext, useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-  const login = (userData) => {
-    setUser(userData)
+  const [token, setToken] = useState(null)
+  const navigate = useNavigate()
+
+  const login = async (email, password) => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/login', {
+        email,
+        password
+      })
+      const { user, token } = response.data
+      setUser(user)
+      setToken(token)
+      localStorage.setItem('token', token)
+      navigate('/landing')
+    } catch (err) {
+      console.error('Login failed:', err.response?.data?.message || err.message)
+      throw err
+    }
   }
 
   const logout = () => {
     setUser(null)
+    setToken(null)
+    localStorage.removeItem('token', token)
+    navigate('/login')
   }
 
   return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>
